@@ -13,15 +13,15 @@ function FuelCalculator() {
 
     // Quantity calculation function
     const QtyCal = () => {
-        let quantityOfFuel = Math.floor(Number(distance) / Number(vehicleMileage))
-        setFuelQty(quantityOfFuel)
+        let quantityOfFuel = (Number(distance) / Number(vehicleMileage)).toFixed(3)
+        setFuelQty(Number(quantityOfFuel))
     }
 
     // Cost calculation function
     const CostCal = () => {
-        let quantityOfFuel = Math.floor(Number(distance) / Number(vehicleMileage))
-        let costOfFuel = Math.floor(Number(fuelPrice) * quantityOfFuel)
-        setFuelCost(costOfFuel)
+        let quantityOfFuel = (Number(distance) / Number(vehicleMileage)).toFixed(3)
+        let costOfFuel = (Number(fuelPrice) * Number(quantityOfFuel)).toFixed(3)
+        setFuelCost(Number(costOfFuel))
     }
 
     // Submit function
