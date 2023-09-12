@@ -76,8 +76,8 @@ function FuelCalculator() {
                                 />
                             </Grid>
                             <Grid item xs={11}>
-                                <Typography variant='body1'>Fuel Quantity Estimated: <strong>{fuelQty}</strong> Liters </Typography>
-                                <Typography variant='body1'>Fuel Cost Estimated: <strong>{fuelCost}</strong> Rupees </Typography>
+                                <Typography variant='body1'>Fuel Quantity Estimated: <strong>{fuelQty}</strong> L </Typography>
+                                <Typography variant='body1'>Fuel Cost Estimated: <strong>{fuelCost}</strong> Rs </Typography>
                             </Grid>
                             <Grid container item xs={11} justifyContent='center' alignItems='center'>
                                 <Grid item>
