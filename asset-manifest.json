@@ -1,0 +1,12 @@
+{
+  "files": {
+    "main.js": "/fuel-calculator-app/static/js/main.b9d89e7b.js",
+    "static/js/787.eda7f3cd.chunk.js": "/fuel-calculator-app/static/js/787.eda7f3cd.chunk.js",
+    "index.html": "/fuel-calculator-app/index.html",
+    "main.b9d89e7b.js.map": "/fuel-calculator-app/static/js/main.b9d89e7b.js.map",
+    "787.eda7f3cd.chunk.js.map": "/fuel-calculator-app/static/js/787.eda7f3cd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.b9d89e7b.js"
+  ]
+}
