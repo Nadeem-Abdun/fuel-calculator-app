@@ -1,8 +1,17 @@
 import React, { useState } from 'react'
 import { Grid, Card, Typography, TextField, Button } from '@mui/material'
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
+import LogoutIcon from '@mui/icons-material/Logout';
 
-function FuelCalculator() {
+interface PropTyp {
+    isLoginValid?: any;
+    setisLoginValid?: any;
+}
+
+function FuelCalculator(props: PropTyp) {
+
+    const { setisLoginValid } = props
+
     // State Management
     const [distance, setDistance] = useState<string>("");
     const [fuelPrice, setFuelPrice] = useState<string>("");
@@ -37,7 +46,7 @@ function FuelCalculator() {
                     <Card sx={{ paddingY: '25px' }}>
                         <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={2}>
                             <Grid item xs={11}>
-                                <Typography variant='h4' textAlign='center' fontWeight={'bold'}>Fuel Calculator</Typography>
+                                <Typography variant='h4' textAlign='center' fontWeight='bold'>Fuel Calculator</Typography>
                             </Grid>
                             <Grid item xs={11}>
                                 <Typography variant='subtitle2'><b>*</b> Required</Typography>
@@ -79,9 +88,12 @@ function FuelCalculator() {
                                 <Typography variant='body1'>Fuel Quantity Estimated: <strong>{fuelQty}</strong> L </Typography>
                                 <Typography variant='body1'>Fuel Cost Estimated: <strong>{fuelCost}</strong> Rs </Typography>
                             </Grid>
-                            <Grid container item xs={11} justifyContent='center' alignItems='center'>
+                            <Grid container item xs={11} justifyContent='space-evenly' alignItems='center'>
                                 <Grid item>
                                     <Button onClick={() => { handleCalSubmit() }} startIcon={<LocalGasStationIcon />} color='success' variant='contained'>Calculate</Button>
+                                </Grid>
+                                <Grid item>
+                                    <Button onClick={() => { setisLoginValid(false) }} startIcon={<LogoutIcon />} color='error' variant='contained'>Logout</Button>
                                 </Grid>
                             </Grid>
                         </Grid>
