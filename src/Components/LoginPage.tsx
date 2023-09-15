@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Card, Grid, TextField, Typography } from '@mui/material'
+import { Button, Card, Grid, Fab, TextField, Typography, Tooltip } from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
 interface PropTyp {
     isLoginValid?: any;
@@ -52,7 +53,7 @@ function LoginPage(props: PropTyp) {
                                 <Typography variant='h4' textAlign='center' fontWeight='bold'>Login</Typography>
                             </Grid>
                             <Grid item xs={11}>
-                                <Typography variant='subtitle2'><b>*</b> Required</Typography>
+                                <Typography variant='subtitle2' color='#6D6C7D'><b>*</b> Required</Typography>
                             </Grid>
                             <Grid item xs={11}>
                                 <TextField
@@ -78,15 +79,28 @@ function LoginPage(props: PropTyp) {
                                     type='password'
                                 />
                             </Grid>
-                            <Grid container item xs={11} justifyContent='center' alignItems='center' spacing={1}>
-                                <Grid item>
-                                    <Button onClick={() => { loginValidationFunc() }} variant='contained' startIcon={<LoginIcon />} color='success'>Login</Button>
+                            <Grid container item xs={11} justifyContent='space-between' alignItems='center'>
+                                <Grid container xs={10.8} item alignItems='center' spacing={isCredValid ? 0 : 1}>
+                                    <Tooltip title='Click to Login' placement="right" arrow>
+                                        <Grid item>
+                                            <Button onClick={() => { loginValidationFunc() }} variant='contained' startIcon={<LoginIcon />} color='success'>Login</Button>
+                                        </Grid>
+                                    </Tooltip>
+                                    {!isCredValid &&
+                                        <Grid item>
+                                            <Typography variant='subtitle2' color='error'>Invalid Credentials!</Typography>
+                                        </Grid>
+                                    }
                                 </Grid>
-                                {!isCredValid &&
+                                <Grid container xs='auto' item alignItems='center'>
                                     <Grid item>
-                                        <Typography variant='subtitle2' color='error'>Invalid Credentials!</Typography>
+                                        <Tooltip title='Login Bypass' placement="left" arrow>
+                                            <Fab size='small' onClick={() => { setisLoginValid(true) }} color="warning">
+                                                <ErrorOutlineIcon />
+                                            </Fab>
+                                        </Tooltip>
                                     </Grid>
-                                }
+                                </Grid>
                             </Grid>
                         </Grid>
                     </Card>
