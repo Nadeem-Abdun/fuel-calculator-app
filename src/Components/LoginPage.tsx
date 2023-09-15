@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Button, Card, Grid, Fab, TextField, Typography, Tooltip } from '@mui/material'
+import React, { useState, useEffect } from 'react';
+import { Button, Card, Grid, Fab, TextField, Typography, Tooltip } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 
@@ -11,6 +13,22 @@ interface PropTyp {
 function LoginPage(props: PropTyp) {
 
     const { setisLoginValid } = props;
+
+    // Resposiveness Breakpoints
+    const theme = createTheme({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920,
+            },
+        },
+    });
+    const isXs = useMediaQuery(theme.breakpoints.only('xs'));
+    const isSm = useMediaQuery(theme.breakpoints.only('sm'));
+    const isLg = useMediaQuery(theme.breakpoints.only('lg'));
 
     // State Management
     const [loginId, setLoginId] = useState('');
@@ -79,13 +97,19 @@ function LoginPage(props: PropTyp) {
                                     type='password'
                                 />
                             </Grid>
-                            <Grid container item xs={11} justifyContent='space-between' alignItems='center'>
-                                <Grid container xs={10.8} item alignItems='center' spacing={isCredValid ? 0 : 1}>
-                                    <Tooltip title='Click to Login' placement="right" arrow>
+                            <Grid container item xs={11} justifyContent='space-between' alignItems='center' spacing={(isXs || isSm) ? 1 : 0} wrap={isLg ? 'nowrap' : 'wrap'}>
+                                <Grid container xs={10.8} item alignItems='center' spacing={isCredValid ? 0 : 1} wrap='nowrap'>
+                                    {!isCredValid ?
                                         <Grid item>
                                             <Button onClick={() => { loginValidationFunc() }} variant='contained' startIcon={<LoginIcon />} color='success'>Login</Button>
                                         </Grid>
-                                    </Tooltip>
+                                        :
+                                        <Tooltip title='Click to Login' placement="right" arrow>
+                                            <Grid item>
+                                                <Button onClick={() => { loginValidationFunc() }} variant='contained' startIcon={<LoginIcon />} color='success'>Login</Button>
+                                            </Grid>
+                                        </Tooltip>
+                                    }
                                     {!isCredValid &&
                                         <Grid item>
                                             <Typography variant='subtitle2' color='error'>Invalid Credentials!</Typography>
@@ -94,7 +118,7 @@ function LoginPage(props: PropTyp) {
                                 </Grid>
                                 <Grid container xs='auto' item alignItems='center'>
                                     <Grid item>
-                                        <Tooltip title='Login Bypass' placement="left" arrow>
+                                        <Tooltip title='Login Bypass' placement={(isXs || isSm) ? "right" : "left"} arrow>
                                             <Fab size='small' onClick={() => { setisLoginValid(true) }} color="warning">
                                                 <ErrorOutlineIcon />
                                             </Fab>
