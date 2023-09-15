@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/fuel-calculator-app/static/js/main.3ef289c8.js",
+    "main.js": "/fuel-calculator-app/static/js/main.592c468d.js",
     "static/js/787.eda7f3cd.chunk.js": "/fuel-calculator-app/static/js/787.eda7f3cd.chunk.js",
     "index.html": "/fuel-calculator-app/index.html",
-    "main.3ef289c8.js.map": "/fuel-calculator-app/static/js/main.3ef289c8.js.map",
+    "main.592c468d.js.map": "/fuel-calculator-app/static/js/main.592c468d.js.map",
     "787.eda7f3cd.chunk.js.map": "/fuel-calculator-app/static/js/787.eda7f3cd.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.3ef289c8.js"
+    "static/js/main.592c468d.js"
   ]
 }
