@@ -28,7 +28,6 @@ function LoginPage(props: PropTyp) {
     });
     const isXs = useMediaQuery(theme.breakpoints.only('xs'));
     const isSm = useMediaQuery(theme.breakpoints.only('sm'));
-    const isLg = useMediaQuery(theme.breakpoints.only('lg'));
 
     // State Management
     const [loginId, setLoginId] = useState('');
@@ -97,7 +96,7 @@ function LoginPage(props: PropTyp) {
                                     type='password'
                                 />
                             </Grid>
-                            <Grid container item xs={11} justifyContent='space-between' alignItems='center' spacing={(isXs || isSm) ? 1 : 0} wrap={isLg ? 'nowrap' : 'wrap'}>
+                            <Grid container item xs={11} justifyContent='space-between' alignItems='center' wrap='nowrap'>
                                 <Grid container xs={10.8} item alignItems='center' spacing={isCredValid ? 0 : 1} wrap='nowrap'>
                                     {!isCredValid ?
                                         <Grid item>
