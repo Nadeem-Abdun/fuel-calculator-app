@@ -8,11 +8,12 @@ import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 interface PropTyp {
     isLoginValid?: any;
     setisLoginValid?: any;
+    setIsLoading?: any;
 }
 
 function LoginPage(props: PropTyp) {
 
-    const { setisLoginValid } = props;
+    const { setisLoginValid, setIsLoading } = props;
 
     // Resposiveness Breakpoints
     const theme = createTheme({
@@ -39,6 +40,7 @@ function LoginPage(props: PropTyp) {
         if (loginId === 'Abc@fuel.com' && password === 'Abc123') {
             setisLoginValid(true)
             setIsCredValid(true)
+            setIsLoading(true)
         } else {
             setisLoginValid(false)
             setIsCredValid(false)
@@ -118,7 +120,7 @@ function LoginPage(props: PropTyp) {
                                 <Grid container xs='auto' item alignItems='center'>
                                     <Grid item>
                                         <Tooltip title='Login Bypass' placement={(isXs || isSm) ? "right" : "left"} arrow>
-                                            <Fab size='small' onClick={() => { setisLoginValid(true) }} color="warning">
+                                            <Fab size='small' onClick={() => { setisLoginValid(true); setIsLoading(true) }} color="warning">
                                                 <ErrorOutlineIcon />
                                             </Fab>
                                         </Tooltip>

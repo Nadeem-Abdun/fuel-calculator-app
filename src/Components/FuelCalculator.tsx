@@ -6,11 +6,12 @@ import LogoutIcon from '@mui/icons-material/Logout';
 interface PropTyp {
     isLoginValid?: any;
     setisLoginValid?: any;
+    setIsLoading?: any;
 }
 
 function FuelCalculator(props: PropTyp) {
 
-    const { setisLoginValid } = props
+    const { setisLoginValid, setIsLoading } = props
 
     // State Management
     const [distance, setDistance] = useState<string>("");
@@ -109,7 +110,7 @@ function FuelCalculator(props: PropTyp) {
                                 </Grid>
                                 <Grid item>
                                     <Tooltip title='Click to Logout' placement="left" arrow>
-                                        <Button onClick={() => { setisLoginValid(false) }} startIcon={<LogoutIcon />} color='error' variant='contained'>Logout</Button>
+                                        <Button onClick={() => { setisLoginValid(false); setIsLoading(true) }} startIcon={<LogoutIcon />} color='error' variant='contained'>Logout</Button>
                                     </Tooltip>
                                 </Grid>
                             </Grid>
