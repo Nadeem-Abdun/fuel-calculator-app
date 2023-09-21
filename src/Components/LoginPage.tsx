@@ -67,7 +67,7 @@ function LoginPage(props: PropTyp) {
             <Grid container xl={4} lg={4} md={6} sm={8} xs={10} justifyContent='center' alignItems='center'>
                 <Grid item xs={12}>
                     <Card sx={{ paddingY: '25px' }}>
-                        <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={2}>
+                        <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={isXs ? 3 : 2}>
                             <Grid item xs={11}>
                                 <Typography variant='h4' textAlign='center' fontWeight='bold'>Login</Typography>
                             </Grid>

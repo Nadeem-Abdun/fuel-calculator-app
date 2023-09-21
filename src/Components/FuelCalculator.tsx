@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Grid, Card, Typography, TextField, Button, Tooltip } from '@mui/material'
+import { createTheme } from '@mui/material/styles';
+import { useMediaQuery } from '@mui/material';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import LogoutIcon from '@mui/icons-material/Logout';
 
@@ -12,6 +14,21 @@ interface PropTyp {
 function FuelCalculator(props: PropTyp) {
 
     const { setisLoginValid, setIsLoading } = props
+
+    // Resposiveness Breakpoints
+    const theme = createTheme({
+        breakpoints: {
+            values: {
+                xs: 0,
+                sm: 600,
+                md: 960,
+                lg: 1280,
+                xl: 1920,
+            },
+        },
+    });
+    const isXs = useMediaQuery(theme.breakpoints.only('xs'));
+    const isSm = useMediaQuery(theme.breakpoints.only('sm'));
 
     // State Management
     const [distance, setDistance] = useState<string>("");
@@ -53,7 +70,7 @@ function FuelCalculator(props: PropTyp) {
             <Grid container xl={4} lg={4} md={6} sm={8} xs={10} justifyContent='center' alignItems='center'>
                 <Grid item xs={12}>
                     <Card sx={{ paddingY: '25px' }}>
-                        <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={2}>
+                        <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={isXs ? 3 : 2}>
                             <Grid item xs={11}>
                                 <Typography variant='h4' textAlign='center' fontWeight='bold'>Fuel Calculator</Typography>
                             </Grid>
