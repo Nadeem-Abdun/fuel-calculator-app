@@ -6,7 +6,7 @@ const Loading = () => {
 
     return (
         <div className="loading-overlay">
-            <CircularProgress color="error" />
+            <CircularProgress color="primary" />
         </div>
     )
 }
