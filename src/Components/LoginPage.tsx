@@ -4,6 +4,7 @@ import { createTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import ErrorPopup from '../SparkComponents/ErrorPopup/ErrorPopup';
 
 interface PropTyp {
     isLoginValid?: any;
@@ -62,6 +63,11 @@ function LoginPage(props: PropTyp) {
         }
     }, [loginId])
 
+    // Error Popup Close Function
+    const handleErrorPopupClose = () => {
+        setIsCredValid(true)
+    }
+
     return (
         <React.Fragment>
             <Grid container xl={4} lg={4} md={6} sm={8} xs={10} justifyContent='center' alignItems='center'>
@@ -100,22 +106,11 @@ function LoginPage(props: PropTyp) {
                             </Grid>
                             <Grid container item xs={11} justifyContent='space-between' alignItems='center' wrap='nowrap'>
                                 <Grid container xs={10.8} item alignItems='center' spacing={isCredValid ? 0 : 1} wrap='nowrap'>
-                                    {!isCredValid ?
+                                    <Tooltip title='Click to Login' placement="right" arrow>
                                         <Grid item>
                                             <Button onClick={() => { loginValidationFunc() }} variant='contained' startIcon={<LoginIcon />} color='success'>Login</Button>
                                         </Grid>
-                                        :
-                                        <Tooltip title='Click to Login' placement="right" arrow>
-                                            <Grid item>
-                                                <Button onClick={() => { loginValidationFunc() }} variant='contained' startIcon={<LoginIcon />} color='success'>Login</Button>
-                                            </Grid>
-                                        </Tooltip>
-                                    }
-                                    {!isCredValid &&
-                                        <Grid item>
-                                            <Typography variant='subtitle2' color='error'>Invalid Credentials!</Typography>
-                                        </Grid>
-                                    }
+                                    </Tooltip>
                                 </Grid>
                                 <Grid container xs='auto' item alignItems='center'>
                                     <Grid item>
@@ -131,6 +126,13 @@ function LoginPage(props: PropTyp) {
                     </Card>
                 </Grid>
             </Grid>
+            <ErrorPopup
+                popUpOpen={!isCredValid}
+                popUpClose={handleErrorPopupClose}
+                errorPopUpHeading={"Sign In Failed"}
+                errorPopUpMessage={"Sorry, The Username and Password you have entered is incorrect/empty."}
+                errorPopUpButtonText={"Try Again"}
+            />
         </React.Fragment>
     )
 }

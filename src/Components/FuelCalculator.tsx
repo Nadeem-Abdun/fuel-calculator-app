@@ -4,6 +4,7 @@ import { createTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
 import LogoutIcon from '@mui/icons-material/Logout';
+import ErrorPopup from '../SparkComponents/ErrorPopup/ErrorPopup';
 
 interface PropTyp {
     isLoginValid?: any;
@@ -65,6 +66,11 @@ function FuelCalculator(props: PropTyp) {
         }
     }
 
+    // Error Popup Close Function
+    const handleErrorPopupClose = () => {
+        setemptyFieldsValidator(false)
+    }
+
     return (
         <React.Fragment>
             <Grid container xl={4} lg={4} md={6} sm={8} xs={10} justifyContent='center' alignItems='center'>
@@ -84,7 +90,7 @@ function FuelCalculator(props: PropTyp) {
                                     fullWidth
                                     type='number'
                                     value={distance}
-                                    onChange={(e) => { setDistance(e.target.value); setemptyFieldsValidator(false) }}
+                                    onChange={(e) => { setDistance(e.target.value) }}
                                     required
                                 />
                             </Grid>
@@ -95,7 +101,7 @@ function FuelCalculator(props: PropTyp) {
                                     fullWidth
                                     type='number'
                                     value={fuelPrice}
-                                    onChange={(e) => { setFuelPrice(e.target.value); setemptyFieldsValidator(false) }}
+                                    onChange={(e) => { setFuelPrice(e.target.value) }}
                                     required
                                 />
                             </Grid>
@@ -106,15 +112,10 @@ function FuelCalculator(props: PropTyp) {
                                     fullWidth
                                     type='number'
                                     value={vehicleMileage}
-                                    onChange={(e) => { setVehicleMileage(e.target.value); setemptyFieldsValidator(false) }}
+                                    onChange={(e) => { setVehicleMileage(e.target.value) }}
                                     required
                                 />
                             </Grid>
-                            {emptyFieldsValidator &&
-                                <Grid item xs={11}>
-                                    <Typography variant='subtitle2' color='error' textAlign='center'>"All fields are mandatory"</Typography>
-                                </Grid>
-                            }
                             <Grid item xs={11}>
                                 <Typography variant='body1'>Fuel Quantity Estimated: <strong>{fuelQty}</strong> L </Typography>
                                 <Typography variant='body1'>Fuel Cost Estimated: <strong>{fuelCost}</strong> Rs </Typography>
@@ -135,6 +136,13 @@ function FuelCalculator(props: PropTyp) {
                     </Card>
                 </Grid>
             </Grid>
+            <ErrorPopup
+                popUpOpen={emptyFieldsValidator}
+                popUpClose={handleErrorPopupClose}
+                errorPopUpHeading={"Invalid Entry"}
+                errorPopUpMessage={"All fields are mandatory. Please enter all the values in the given fields."}
+                errorPopUpButtonText={"Try Again"}
+            />
         </React.Fragment>
     )
 }

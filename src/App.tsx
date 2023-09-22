@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Box, Dialog } from '@mui/material'
 import FuelCalculator from './Components/FuelCalculator';
 import LoginPage from './Components/LoginPage';
-import Loading from './SparkComponents/Loading';
+import Loading from './SparkComponents/Loading/Loading';
 
 
 function App() {
