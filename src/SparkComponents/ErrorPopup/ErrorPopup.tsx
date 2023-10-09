@@ -26,7 +26,7 @@ const ErrorPopup = (props: PropTyp) => {
                 <Divider />
                 <DialogActions>
                     <Button onClick={() => { popUpClose() }} variant='text' color='success' fullWidth>
-                        <Typography variant='body2' fontWeight='bold' textAlign='center' textTransform='none'>{errorPopUpButtonText}!</Typography>
+                        <Typography variant='body1' fontWeight='bold' textAlign='center' textTransform='none'>{errorPopUpButtonText}!</Typography>
                     </Button>
                 </DialogActions>
             </Dialog>
