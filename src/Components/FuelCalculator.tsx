@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { Grid, Card, Typography, TextField, Button, Tooltip } from '@mui/material'
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import LogoutIcon from '@mui/icons-material/Logout';
+// import LogoutIcon from '@mui/icons-material/Logout';
 
-interface PropTyp {
-    isLoginValid?: any;
-    setisLoginValid?: any;
-}
+// interface PropTyp {
+//     isLoginValid?: any;
+//     setisLoginValid?: any;
+// }
 
-function FuelCalculator(props: PropTyp) {
+function FuelCalculator() {
 
-    const { setisLoginValid } = props
+    // const { setisLoginValid } = props;
 
     // State Management
     const [distance, setDistance] = useState<string>("");
@@ -101,17 +101,17 @@ function FuelCalculator(props: PropTyp) {
                                 <Typography variant='body1'>Fuel Quantity Estimated: <strong>{fuelQty}</strong> L </Typography>
                                 <Typography variant='body1'>Fuel Cost Estimated: <strong>{fuelCost}</strong> Rs </Typography>
                             </Grid>
-                            <Grid container item xs={11} justifyContent='space-between' alignItems='center' spacing={1}>
+                            <Grid container item xs={11} justifyContent='center' alignItems='center'>
                                 <Grid item>
                                     <Tooltip title='Click to Calculate' placement="right" arrow>
-                                        <Button onClick={() => { handleCalSubmit() }} startIcon={<LocalGasStationIcon />} color='success' variant='contained'>Calculate</Button>
+                                        <Button onClick={() => { handleCalSubmit() }} startIcon={<LocalGasStationIcon />} color='success' variant='contained' fullWidth>Calculate</Button>
                                     </Tooltip>
                                 </Grid>
-                                <Grid item>
+                                {/* <Grid item>
                                     <Tooltip title='Click to Logout' placement="left" arrow>
                                         <Button onClick={() => { setisLoginValid(false) }} startIcon={<LogoutIcon />} color='error' variant='contained'>Logout</Button>
                                     </Tooltip>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Grid>
                     </Card>
