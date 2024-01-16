@@ -1,35 +1,16 @@
 import React, { useState } from 'react'
 import { Grid, Card, Typography, TextField, Button, Tooltip } from '@mui/material'
-import { createTheme } from '@mui/material/styles';
-import { useMediaQuery } from '@mui/material';
 import LocalGasStationIcon from '@mui/icons-material/LocalGasStation';
-import LogoutIcon from '@mui/icons-material/Logout';
-import ErrorPopup from '../SparkComponents/ErrorPopup/ErrorPopup';
+// import LogoutIcon from '@mui/icons-material/Logout';
 
-interface PropTyp {
-    isLoginValid?: any;
-    setisLoginValid?: any;
-    setIsLoading?: any;
-}
+// interface PropTyp {
+//     isLoginValid?: any;
+//     setisLoginValid?: any;
+// }
 
-function FuelCalculator(props: PropTyp) {
+function FuelCalculator() {
 
-    const { setisLoginValid, setIsLoading } = props
-
-    // Resposiveness Breakpoints
-    const theme = createTheme({
-        breakpoints: {
-            values: {
-                xs: 0,
-                sm: 600,
-                md: 960,
-                lg: 1280,
-                xl: 1920,
-            },
-        },
-    });
-    const isXs = useMediaQuery(theme.breakpoints.only('xs'));
-    const isSm = useMediaQuery(theme.breakpoints.only('sm'));
+    // const { setisLoginValid } = props;
 
     // State Management
     const [distance, setDistance] = useState<string>("");
@@ -66,17 +47,12 @@ function FuelCalculator(props: PropTyp) {
         }
     }
 
-    // Error Popup Close Function
-    const handleErrorPopupClose = () => {
-        setemptyFieldsValidator(false)
-    }
-
     return (
         <React.Fragment>
-            <Grid container xl={4} lg={4} md={6} sm={8} xs={10} justifyContent='center' alignItems='center'>
+            <Grid container xl={4} lg={4} md={6} sm={8} xs={11} justifyContent='center' alignItems='center'>
                 <Grid item xs={12}>
                     <Card sx={{ paddingY: '25px' }}>
-                        <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={isXs ? 3 : 2}>
+                        <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={2}>
                             <Grid item xs={11}>
                                 <Typography variant='h4' textAlign='center' fontWeight='bold'>Fuel Calculator</Typography>
                             </Grid>
@@ -90,7 +66,7 @@ function FuelCalculator(props: PropTyp) {
                                     fullWidth
                                     type='number'
                                     value={distance}
-                                    onChange={(e) => { setDistance(e.target.value) }}
+                                    onChange={(e) => { setDistance(e.target.value); setemptyFieldsValidator(false) }}
                                     required
                                 />
                             </Grid>
@@ -101,7 +77,7 @@ function FuelCalculator(props: PropTyp) {
                                     fullWidth
                                     type='number'
                                     value={fuelPrice}
-                                    onChange={(e) => { setFuelPrice(e.target.value) }}
+                                    onChange={(e) => { setFuelPrice(e.target.value); setemptyFieldsValidator(false) }}
                                     required
                                 />
                             </Grid>
@@ -112,37 +88,35 @@ function FuelCalculator(props: PropTyp) {
                                     fullWidth
                                     type='number'
                                     value={vehicleMileage}
-                                    onChange={(e) => { setVehicleMileage(e.target.value) }}
+                                    onChange={(e) => { setVehicleMileage(e.target.value); setemptyFieldsValidator(false) }}
                                     required
                                 />
                             </Grid>
+                            {emptyFieldsValidator &&
+                                <Grid item xs={11}>
+                                    <Typography variant='subtitle2' color='error' textAlign='center'>"All fields are mandatory"</Typography>
+                                </Grid>
+                            }
                             <Grid item xs={11}>
                                 <Typography variant='body1'>Fuel Quantity Estimated: <strong>{fuelQty}</strong> L </Typography>
                                 <Typography variant='body1'>Fuel Cost Estimated: <strong>{fuelCost}</strong> Rs </Typography>
                             </Grid>
-                            <Grid container item xs={11} justifyContent='space-between' alignItems='center' spacing={1}>
+                            <Grid container item xs={11} justifyContent='center' alignItems='center'>
                                 <Grid item>
                                     <Tooltip title='Click to Calculate' placement="right" arrow>
-                                        <Button onClick={() => { handleCalSubmit() }} startIcon={<LocalGasStationIcon />} color='success' variant='contained'>Calculate</Button>
+                                        <Button onClick={() => { handleCalSubmit() }} startIcon={<LocalGasStationIcon />} color='success' variant='contained' fullWidth>Calculate</Button>
                                     </Tooltip>
                                 </Grid>
-                                <Grid item>
+                                {/* <Grid item>
                                     <Tooltip title='Click to Logout' placement="left" arrow>
-                                        <Button onClick={() => { setisLoginValid(false); setIsLoading(true) }} startIcon={<LogoutIcon />} color='error' variant='contained'>Logout</Button>
+                                        <Button onClick={() => { setisLoginValid(false) }} startIcon={<LogoutIcon />} color='error' variant='contained'>Logout</Button>
                                     </Tooltip>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Grid>
                     </Card>
                 </Grid>
             </Grid>
-            <ErrorPopup
-                popUpOpen={emptyFieldsValidator}
-                popUpClose={handleErrorPopupClose}
-                errorPopUpHeading={"Invalid Entry"}
-                errorPopUpMessage={"All fields are mandatory. Please enter all the values in the given fields."}
-                errorPopUpButtonText={"Try Again"}
-            />
         </React.Fragment>
     )
 }
