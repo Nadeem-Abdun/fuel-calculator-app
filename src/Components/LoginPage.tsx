@@ -62,7 +62,7 @@ function LoginPage(props: PropTyp) {
 
     return (
         <React.Fragment>
-            <Grid container xl={4} lg={4} md={6} sm={8} xs={10} justifyContent='center' alignItems='center'>
+            <Grid container xl={4} lg={4} md={6} sm={8} xs={11} justifyContent='center' alignItems='center'>
                 <Grid item xs={12}>
                     <Card sx={{ paddingY: '25px' }}>
                         <Grid container item xs={12} justifyContent='center' alignItems='center' spacing={2}>
