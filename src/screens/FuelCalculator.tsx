@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Grid, Card, Typography, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
-import LocalGasStationIcon from "@mui/icons-material/LocalGasStation";
-import SaveIcon from "@mui/icons-material/Save";
+import { NavigateNext, Save, LocalGasStation } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 function FuelCalculator() {
+
+    const history = useNavigate();
 
     // State Management
     const [fuelValues, setFuelValues] = useState({
@@ -14,7 +16,8 @@ function FuelCalculator() {
         recordStartLocation: "",
         recordEndLocation: "",
         fuelQuantityEst: 0,
-        fuelCostEst: 0
+        fuelCostEst: 0,
+        createdAt: new Date().toDateString()
     })
     const [emptyFieldsValidator, setemptyFieldsValidator] = useState(false);
 
@@ -58,7 +61,8 @@ function FuelCalculator() {
                 recordStartLocation: "",
                 recordEndLocation: "",
                 fuelQuantityEst: 0,
-                fuelCostEst: 0
+                fuelCostEst: 0,
+                createdAt: ""
             })
         } catch (error) {
             console.error(error);
@@ -70,6 +74,10 @@ function FuelCalculator() {
     const handleRecordCalcDialog = async () => {
         await handleCostQtyCalculations()
         await setRecordCalcDialog(!recordCalcDialog);
+    }
+
+    const navigateToSavedEstimations = () => {
+        history("/saved-estimations");
     }
 
     return (
@@ -126,10 +134,13 @@ function FuelCalculator() {
                     </Grid>
                     <Grid container item xs={11} justifyContent="center" alignItems="center" rowGap={1}>
                         <Grid item xs={12}>
-                            <Button onClick={() => { handleCostQtyCalculations() }} startIcon={<LocalGasStationIcon />} color="success" variant="contained" fullWidth>Calculate</Button>
+                            <Button onClick={() => { handleCostQtyCalculations() }} startIcon={<LocalGasStation />} color="success" variant="contained" fullWidth>Calculate</Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={() => { handleRecordCalcDialog() }} startIcon={<SaveIcon />} color="success" variant="contained" fullWidth>Save Estimations</Button>
+                            <Button onClick={() => { handleRecordCalcDialog() }} startIcon={<Save />} color="success" variant="contained" fullWidth>Save Estimations</Button>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <Button onClick={() => { navigateToSavedEstimations() }} startIcon={<NavigateNext />} color="success" variant="contained" fullWidth>Go To Saved Estimations</Button>
                         </Grid>
                     </Grid>
                 </Grid>
