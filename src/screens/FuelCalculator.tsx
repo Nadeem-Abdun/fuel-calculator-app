@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Grid, Card, Typography, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
-import { NavigateNext, Save, LocalGasStation } from "@mui/icons-material";
+import { Save, LocalGasStation, ListAlt } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 function FuelCalculator() {
@@ -12,9 +12,9 @@ function FuelCalculator() {
         distance: null,
         fuelPrice: null,
         vehicleMileage: null,
-        recordTitle: "",
-        recordStartLocation: "",
-        recordEndLocation: "",
+        estimationTitle: "",
+        originLocation: "",
+        endLocation: "",
         fuelQuantityEst: 0,
         fuelCostEst: 0,
         createdAt: new Date().toDateString()
@@ -57,9 +57,9 @@ function FuelCalculator() {
                 distance: null,
                 fuelPrice: null,
                 vehicleMileage: null,
-                recordTitle: "",
-                recordStartLocation: "",
-                recordEndLocation: "",
+                estimationTitle: "",
+                originLocation: "",
+                endLocation: "",
                 fuelQuantityEst: 0,
                 fuelCostEst: 0,
                 createdAt: ""
@@ -137,10 +137,10 @@ function FuelCalculator() {
                             <Button onClick={() => { handleCostQtyCalculations() }} startIcon={<LocalGasStation />} color="success" variant="contained" fullWidth>Calculate</Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={() => { handleRecordCalcDialog() }} startIcon={<Save />} color="success" variant="contained" fullWidth>Save Estimations</Button>
+                            <Button onClick={() => { handleRecordCalcDialog() }} startIcon={<Save />} color="success" variant="contained" fullWidth>Save Record</Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={() => { navigateToSavedEstimations() }} startIcon={<NavigateNext />} color="success" variant="contained" fullWidth>Go To Saved Estimations</Button>
+                            <Button onClick={() => { navigateToSavedEstimations() }} startIcon={<ListAlt />} color="success" variant="contained" fullWidth>View Saved Estimations</Button>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -155,34 +155,34 @@ function FuelCalculator() {
                     <Grid container xs={12} justifyContent="flex-start" alignItems="center" rowGap={2} columnSpacing={1}>
                         <Grid item xs={12}>
                             <TextField
-                                id="recordTitle"
+                                id="estimationTitle"
                                 label="Title of the Record"
                                 fullWidth
                                 type="text"
-                                value={fuelValues.recordTitle}
-                                onChange={(e) => handleFuelValues("recordTitle", e.target.value)}
+                                value={fuelValues.estimationTitle}
+                                onChange={(e) => handleFuelValues("estimationTitle", e.target.value)}
                                 required
                             />
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <TextField
-                                id="recordStartLocation"
+                                id="originLocation"
                                 label="Start Location"
                                 fullWidth
                                 type="text"
-                                value={fuelValues.recordStartLocation}
-                                onChange={(e) => handleFuelValues("recordStartLocation", e.target.value)}
+                                value={fuelValues.originLocation}
+                                onChange={(e) => handleFuelValues("originLocation", e.target.value)}
                                 required
                             />
                         </Grid>
                         <Grid item sm={6} xs={12}>
                             <TextField
-                                id="recordEndLocation"
+                                id="endLocation"
                                 label="Destination"
                                 fullWidth
                                 type="text"
-                                value={fuelValues.recordEndLocation}
-                                onChange={(e) => handleFuelValues("recordEndLocation", e.target.value)}
+                                value={fuelValues.endLocation}
+                                onChange={(e) => handleFuelValues("endLocation", e.target.value)}
                                 required
                             />
                         </Grid>
