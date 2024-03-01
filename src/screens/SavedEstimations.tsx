@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Card, Typography, IconButton, Button } from "@mui/material";
-import { ExitToApp, DeleteForever } from "@mui/icons-material";
+import { Grid, Card, Typography, Button } from "@mui/material";
+import { ExitToApp } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
+import SavedEstimateCard from "../components/SavedEstimateCard/SavedEstimateCard";
 
 function SavedEstimations() {
 
@@ -39,51 +40,19 @@ function SavedEstimations() {
                             const { distance, fuelPrice, vehicleMileage, estimationTitle, originLocation, endLocation, fuelQuantityEst, fuelCostEst, createdAt } = record;
                             return (
                                 <Grid item xs={12} key={index}>
-                                    <Card sx={{ marginX: "5px", paddingX: "5px", paddingY: "3px", minHeight: "85px", background: "linear-gradient(to right, #d2d2d2, #d4d4d4)" }}>
-                                        <Grid container xs={12} justifyContent="center" alignItems="center">
-                                            <Grid container item xs={12} justifyContent="space-between" alignItems="center">
-                                                <Grid item>
-                                                    <Typography variant="h6" fontWeight={600}>{estimationTitle}</Typography>
-                                                </Grid>
-                                                <Grid item>
-                                                    <IconButton size="small" onClick={() => handleDeleteRecord(index)}><DeleteForever color="error" fontSize="small" /></IconButton>
-                                                </Grid>
-                                            </Grid>
-                                            <Grid container item xs={12}>
-                                                <Grid container item xs={10}>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body2" fontWeight={400}>Location: <strong>{originLocation}</strong>  - <strong>{endLocation}</strong></Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body2" fontWeight={400}>Given Distance: <strong>{distance}kms</strong></Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body2" fontWeight={400}>Given Fuel Price: <strong>{fuelPrice}rs</strong></Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body2" fontWeight={400}>Given Mileage: <strong>{vehicleMileage}km/l</strong></Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="caption" fontWeight={400}>Saved At {createdAt}</Typography>
-                                                    </Grid>
-                                                </Grid>
-                                                <Grid container item xs={2}>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body1" fontWeight={600}>{fuelQuantityEst}L</Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body2" fontWeight={400}>Required Quantity</Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body1" fontWeight={600}>{fuelCostEst}Rs</Typography>
-                                                    </Grid>
-                                                    <Grid item xs={12}>
-                                                        <Typography variant="body2" fontWeight={400}>Estimated Cost</Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                        </Grid>
-                                    </Card>
+                                    <SavedEstimateCard
+                                        index={index}
+                                        distance={distance}
+                                        fuelPrice={fuelPrice}
+                                        vehicleMileage={vehicleMileage}
+                                        estimationTitle={estimationTitle}
+                                        originLocation={originLocation}
+                                        endLocation={endLocation}
+                                        fuelQuantityEst={fuelQuantityEst}
+                                        fuelCostEst={fuelCostEst}
+                                        createdAt={createdAt}
+                                        handleDeleteRecord={handleDeleteRecord}
+                                    />
                                 </Grid>
                             )
                         })
