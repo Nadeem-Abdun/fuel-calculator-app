@@ -72,8 +72,13 @@ function FuelCalculator() {
     // Record Estimations Dialog
     const [recordCalcDialog, setRecordCalcDialog] = useState(false);
     const handleRecordCalcDialog = async () => {
-        await handleCostQtyCalculations()
-        await setRecordCalcDialog(!recordCalcDialog);
+        if (fuelValues.distance !== null && fuelValues.fuelPrice !== null && fuelValues.vehicleMileage !== null) {
+            await handleCostQtyCalculations()
+            await setRecordCalcDialog(!recordCalcDialog);
+            await setemptyFieldsValidator(false)
+        } else {
+            await setemptyFieldsValidator(true)
+        }
     }
 
     const navigateToSavedEstimations = () => {
@@ -134,13 +139,37 @@ function FuelCalculator() {
                     </Grid>
                     <Grid container item xs={11} justifyContent="center" alignItems="center" rowGap={1}>
                         <Grid item xs={12}>
-                            <Button onClick={() => { handleCostQtyCalculations() }} startIcon={<LocalGasStation />} color="success" variant="contained" fullWidth>Calculate</Button>
+                            <Button
+                                color="success"
+                                variant="contained"
+                                fullWidth
+                                startIcon={<LocalGasStation />}
+                                onClick={() => { handleCostQtyCalculations() }}
+                            >
+                                Calculate
+                            </Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={() => { handleRecordCalcDialog() }} startIcon={<Save />} color="success" variant="contained" fullWidth>Save Record</Button>
+                            <Button
+                                color="success"
+                                variant="contained"
+                                fullWidth
+                                startIcon={<Save />}
+                                onClick={() => { handleRecordCalcDialog() }}
+                            >
+                                Save Record
+                            </Button>
                         </Grid>
                         <Grid item xs={12}>
-                            <Button onClick={() => { navigateToSavedEstimations() }} startIcon={<ListAlt />} color="success" variant="contained" fullWidth>View Saved Estimations</Button>
+                            <Button
+                                color="success"
+                                variant="contained"
+                                fullWidth
+                                startIcon={<ListAlt />}
+                                onClick={() => { navigateToSavedEstimations() }}
+                            >
+                                View Saved Estimations
+                            </Button>
                         </Grid>
                     </Grid>
                 </Grid>
