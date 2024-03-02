@@ -4,7 +4,7 @@ import { createTheme } from '@mui/material/styles';
 import { useMediaQuery } from '@mui/material';
 import LoginIcon from '@mui/icons-material/Login';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import ErrorPopup from '../SparkComponents/ErrorPopup/ErrorPopup';
+import ErrorPopup from '../components/ErrorPopup/ErrorPopup';
 
 interface PropTyp {
     isLoginValid?: any;
